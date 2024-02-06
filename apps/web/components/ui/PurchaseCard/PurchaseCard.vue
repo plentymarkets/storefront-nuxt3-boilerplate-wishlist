@@ -3,10 +3,30 @@
     class="p-4 xl:p-6 md:border md:border-neutral-100 md:shadow-lg md:rounded-md md:sticky md:top-20"
     data-testid="purchase-card"
   >
-    <UiTag variant="secondary" strong class="mb-4">
-      <SfIconSell size="sm" class="mr-1" />
-      <span class="mr-1">{{ $t(`sale`) }}</span>
-    </UiTag>
+    <div class="flex items-center justify-between mb-4">
+      <UiTag variant="secondary" strong>
+        <SfIconSell size="sm" class="mr-1" />
+        <span class="mr-1">{{ $t(`sale`) }}</span>
+      </UiTag>
+
+      <WishlistButton v-if="isDesktop">
+        <template #content="{ active }">
+          <span v-if="!active">
+            {{ t('addToWishlist') }}
+          </span>
+          <span v-else>
+            {{ t('removeFromWishlist') }}
+          </span>
+        </template>
+      </WishlistButton>
+
+      <WishlistButton
+        v-else
+        square
+        class="bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full"
+      />
+    </div>
+
     <h1 class="mb-1 font-bold typography-headline-4" data-testid="product-name">{{ product.name }}</h1>
     <div class="my-1">
       <span class="mr-2 text-secondary-700 font-bold font-headings text-2xl" data-testid="price">
@@ -104,6 +124,11 @@ import {
 import type { PurchaseCardProps } from '~/components/ui/PurchaseCard/types';
 
 defineProps<PurchaseCardProps>();
+
+const { isDesktop } = useBreakpoints();
+const isWishlistItem = ref(false);
+
+const { t } = useI18n();
 
 const quantitySelectorValue = ref(1);
 </script>

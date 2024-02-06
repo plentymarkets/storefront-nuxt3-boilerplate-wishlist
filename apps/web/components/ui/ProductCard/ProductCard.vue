@@ -15,6 +15,8 @@
           format="webp"
         />
       </SfLink>
+
+      <slot name="wishlistButton" />
     </div>
     <div class="p-2 border-t border-neutral-200 typography-text-sm">
       <SfLink :tag="NuxtLink" :to="`${paths.product}${slug}`" class="no-underline" variant="secondary">

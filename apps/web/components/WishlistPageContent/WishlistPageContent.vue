@@ -22,9 +22,9 @@
                 :slug="slug"
                 :priority="index === 0"
               >
-<!--                <template #wishlistButton>-->
-<!--                  <WishlistButton discard square class="absolute top-0 right-0 mr-2 mt-2 bg-white" :product="product" />-->
-<!--                </template>-->
+                <template #wishlistButton>
+                  <WishlistButton discard square class="absolute top-0 right-0 mr-2 mt-2 bg-white" />
+                </template>
               </UiProductCard>
             </NuxtLazyHydrate>
           </section>
