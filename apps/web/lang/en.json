@@ -331,6 +331,12 @@
         "paymentMethod": "Payment method",
         "shippingAddress": "Shipping address"
       }
+    },
+    "wishlist": {
+      "heading": "Wishlist",
+      "section": {
+        "myWishlist": "My wishlist"
+      }
     }
   },
   "auth": {

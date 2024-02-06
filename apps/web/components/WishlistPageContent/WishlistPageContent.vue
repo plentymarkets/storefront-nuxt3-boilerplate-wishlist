@@ -42,6 +42,14 @@
           {{ $t('emptyWishlist') }}
         </h2>
       </div>
+
+      <UiPagination
+          v-if="true"
+          :current-page="1"
+          :total-items="24"
+          :page-size="5"
+          :max-visible-pages="2"
+      />
     </div>
   </NarrowContainer>
 </template>

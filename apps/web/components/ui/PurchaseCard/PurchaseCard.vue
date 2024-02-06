@@ -8,9 +8,11 @@
         <SfIconSell size="sm" class="mr-1" />
         <span class="mr-1">{{ $t(`sale`) }}</span>
       </UiTag>
-
-      <WishlistButton v-if="isDesktop">
-        <template #content="{ active }">
+      <WishlistButton
+        :square="!isDesktop"
+        :class="{ 'bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full': !isDesktop }"
+      >
+        <template v-if="isDesktop" #content="{ active }">
           <span v-if="!active">
             {{ t('addToWishlist') }}
           </span>
@@ -19,12 +21,6 @@
           </span>
         </template>
       </WishlistButton>
-
-      <WishlistButton
-        v-else
-        square
-        class="bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full"
-      />
     </div>
 
     <h1 class="mb-1 font-bold typography-headline-4" data-testid="product-name">{{ product.name }}</h1>
@@ -126,7 +122,6 @@ import type { PurchaseCardProps } from '~/components/ui/PurchaseCard/types';
 defineProps<PurchaseCardProps>();
 
 const { isDesktop } = useBreakpoints();
-const isWishlistItem = ref(false);
 
 const { t } = useI18n();
 
