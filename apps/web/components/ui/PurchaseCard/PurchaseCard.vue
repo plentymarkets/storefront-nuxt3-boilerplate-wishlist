@@ -53,7 +53,7 @@
               {{ $t('addToList') }}
             </span>
             <span v-else>
-              {{ t('removeFromWishlist') }}
+              {{ $t('removeFromWishlist') }}
             </span>
           </template>
         </WishlistButton>
@@ -102,7 +102,6 @@ import {
   SfIconCompareArrows,
   SfIconWarehouse,
   SfIconPackage,
-  SfIconFavorite,
   SfIconSell,
   SfIconShoppingCartCheckout,
   SfIconShoppingCart,
@@ -110,10 +109,6 @@ import {
 import type { PurchaseCardProps } from '~/components/ui/PurchaseCard/types';
 
 defineProps<PurchaseCardProps>();
-
-const { isDesktop } = useBreakpoints();
-
-const { t } = useI18n();
 
 const quantitySelectorValue = ref(1);
 </script>

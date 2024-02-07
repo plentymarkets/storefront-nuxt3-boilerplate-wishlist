@@ -21,8 +21,8 @@ fetchWishlist();
 
 const breadcrumbs = computed(() => {
   return [
-    { name: t('home'), link: localePath(paths.home) },
-    { name: t('wishlist'), link: localePath(paths.wishlist) },
+    { name: t('home'), link: paths.home },
+    { name: t('wishlist'), link: paths.wishlist },
   ];
 });
 </script>
