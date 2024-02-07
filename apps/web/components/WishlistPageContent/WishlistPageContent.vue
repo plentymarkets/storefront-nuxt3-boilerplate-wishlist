@@ -1,31 +1,39 @@
 <template>
   <NarrowContainer>
     <div class="mb-20 px-4 md:px-0" data-testid="wishlist-layout">
-      <div v-if="products && products.length > 0" data-testid="wishlist-page-content">
+      <div v-if="wishlist?.lineItems.length" data-testid="wishlist-page-content">
         <div class="flex-1">
-          <section
-            class="grid grid-cols-1 2xs:grid-cols-2 gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 mb-10 md:mb-5"
-            data-testid="wishlist-grid"
-          >
+          <section class="mb-4" data-testid="wishlist-grid">
             <NuxtLazyHydrate
               when-visible
-              v-for="({ id, name, rating, price, primaryImage, slug }, index) in products"
+              v-for="{ id, attributes, image, name, totalPrice, unitPrice, quantity, slug } in wishlist.lineItems"
               :key="id"
             >
-              <UiProductCard
+              <UiCartProductCard
+                :attributes="attributes"
+                :image-url="image?.url"
+                :image-alt="image?.alt"
                 :name="name ?? ''"
-                :rating-count="rating?.count"
-                :rating="rating?.average"
-                :price="price?.value.amount"
-                :image-url="primaryImage?.url ?? ''"
-                :image-alt="primaryImage?.alt ?? ''"
+                :price="totalPrice?.amount || 0"
+                :special-price="unitPrice?.value?.amount || 0"
+                :max-value="10"
+                :min-value="1"
+                :value="quantity"
                 :slug="slug"
-                :priority="index === 0"
               >
-                <template #wishlistButton>
+                <template #removeBtn>
                   <WishlistButton discard square class="absolute top-0 right-0 mr-2 mt-2 bg-white" />
                 </template>
-              </UiProductCard>
+
+                <template #additionalBtn>
+                  <SfButton size="sm" class="ml-4">
+                    <template #prefix>
+                      <SfIconShoppingCart size="sm" />
+                    </template>
+                    {{ $t('addToCartShort') }}
+                  </SfButton>
+                </template>
+              </UiCartProductCard>
             </NuxtLazyHydrate>
           </section>
         </div>
@@ -44,18 +52,18 @@
       </div>
 
       <UiPagination
-          v-if="true"
-          :current-page="1"
-          :total-items="24"
-          :page-size="5"
-          :max-visible-pages="2"
+        v-if="wishlist?.lineItems.length"
+        :current-page="1"
+        :total-items="wishlist?.lineItems.length"
+        :page-size="5"
+        :max-visible-pages="2"
       />
     </div>
   </NarrowContainer>
 </template>
 
 <script setup lang="ts">
-import { WishlistPageContentProps } from '~/components/WishlistPageContent/types';
+import { SfButton, SfIconShoppingCart } from '@storefront-ui/vue';
 
-defineProps<WishlistPageContentProps>();
+const { data: wishlist } = useWishlist();
 </script>

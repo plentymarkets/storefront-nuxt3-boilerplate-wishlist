@@ -1,5 +1,6 @@
 import { toRefs } from '@vueuse/shared';
 import type { UseWishlistReturn, UseWishlistState, FetchWishlist } from '~/composables/useWishlist/types';
+import { SfCart } from "@vue-storefront/unified-data-model";
 
 /**
  * @description Composable for managing wishlist items.
@@ -21,7 +22,7 @@ export const useWishlist: UseWishlistReturn = () => {
   const fetchWishlist: FetchWishlist = async () => {
     state.value.loading = true;
     try {
-      const { data, error } = await useAsyncData(useSdk().commerce.getProducts);
+      const { data, error } = await useAsyncData<SfCart>(() => useSdk().commerce.getCart());
       useHandleError(error.value);
       state.value.data = data.value;
       return data;

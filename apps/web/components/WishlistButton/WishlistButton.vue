@@ -8,8 +8,7 @@
   >
     <SfLoaderCircular v-if="wishlistLoading" class="flex justify-center items-center" size="sm" />
     <template v-else>
-      <SfIconClose v-if="discard" size="sm" />
-      <SfIconFavoriteFilled v-else-if="isWishlistItem" size="sm" />
+      <SfIconFavoriteFilled v-if="isWishlistItem" size="sm" />
       <SfIconFavorite v-else size="sm" />
       <slot name="content" :active="isWishlistItem" />
     </template>
@@ -18,11 +17,9 @@
 
 <script setup lang="ts">
 import { WishlistButtonProps } from '~/components/WishlistButton/types';
-import { SfButton, SfIconFavorite, SfIconFavoriteFilled, SfLoaderCircular, SfIconClose } from '@storefront-ui/vue';
+import { SfButton, SfIconFavorite, SfIconFavoriteFilled, SfLoaderCircular } from '@storefront-ui/vue';
 
-withDefaults(defineProps<WishlistButtonProps>(), {
-  discard: false,
-});
+defineProps<WishlistButtonProps>();
 
 const isWishlistItem = ref(false);
 const wishlistLoading = ref(false);
