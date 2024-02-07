@@ -22,7 +22,11 @@
                 :slug="slug"
               >
                 <template #removeBtn>
-                  <WishlistButton discard square class="absolute top-0 right-0 mr-2 mt-2 bg-white" />
+                  <div class="absolute top-0 right-0 mr-2 mt-2 bg-white">
+                    <SfButton variant="tertiary" size="sm">
+                      <SfIconClose square size="sm" />
+                    </SfButton>
+                  </div>
                 </template>
 
                 <template #additionalBtn>
@@ -63,7 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import { SfButton, SfIconShoppingCart } from '@storefront-ui/vue';
+import {SfButton, SfIconClose, SfIconShoppingCart} from '@storefront-ui/vue';
 
 const { data: wishlist } = useWishlist();
 </script>
