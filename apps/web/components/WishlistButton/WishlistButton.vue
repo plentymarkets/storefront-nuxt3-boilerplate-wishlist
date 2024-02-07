@@ -16,10 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { WishlistButtonProps } from '~/components/WishlistButton/types';
 import { SfButton, SfIconFavorite, SfIconFavoriteFilled, SfLoaderCircular } from '@storefront-ui/vue';
-
-defineProps<WishlistButtonProps>();
 
 const isWishlistItem = ref(false);
 const wishlistLoading = ref(false);
