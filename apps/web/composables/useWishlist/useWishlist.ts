@@ -1,6 +1,6 @@
 import { toRefs } from '@vueuse/shared';
 import type { UseWishlistReturn, UseWishlistState, FetchWishlist } from '~/composables/useWishlist/types';
-import { SfCart } from "@vue-storefront/unified-data-model";
+import { SfCart } from '@vue-storefront/unified-data-model';
 
 /**
  * @description Composable for managing wishlist items.

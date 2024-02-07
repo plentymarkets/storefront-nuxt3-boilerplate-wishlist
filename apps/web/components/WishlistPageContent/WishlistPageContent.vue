@@ -67,7 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import {SfButton, SfIconClose, SfIconShoppingCart} from '@storefront-ui/vue';
+import { SfButton, SfIconClose, SfIconShoppingCart } from '@storefront-ui/vue';
 
 const { data: wishlist } = useWishlist();
 </script>
