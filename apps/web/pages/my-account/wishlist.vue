@@ -1,6 +1,6 @@
 <template>
   <div class="relative col-span-4" :class="{ 'pointer-events-none opacity-50': loading }">
-    <WishlistPageContent :products="wishlist?.products" />
+    <WishlistPageContent />
   </div>
 </template>
 
@@ -10,7 +10,7 @@ definePageMeta({
   pageType: 'static',
 });
 
-const { fetchWishlist, data: wishlist, loading } = useWishlist();
+const { fetchWishlist, loading } = useWishlist();
 
 fetchWishlist();
 </script>
